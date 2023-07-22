@@ -1,0 +1,2 @@
+if we want to fetch the all the data from the firebase , in a database we make a various field and mow we wnat to use that data in our apllication then ,
+then we need to make a class , then make single varibles for it. then string . instead of that we first print that firebase data in console then copy it and convert it . Json to dart in google. copy it and paste it in new folder.
