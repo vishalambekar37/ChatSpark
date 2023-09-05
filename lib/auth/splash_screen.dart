@@ -16,12 +16,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+      //SingleTickerProviderStateMixin  to set up and manage the _animationController for the background color transition animation in the splash screen.
   // bool _isAnimate = false;
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 4000), () {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge); //mean this screen use whole screen
       SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
           systemNavigationBarColor: Colors.white,
           statusBarColor: Colors.white));
@@ -57,6 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
+  //dispose() Method: This method is called when the state is disposed
   void dispose() {
     super.dispose();
     _animationController?.dispose();
@@ -66,10 +68,6 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     mq = MediaQuery.of(context).size;
     return Scaffold(
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   title: Text('Welcome to Flash Chat'),
-      // ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -86,14 +84,14 @@ class _SplashScreenState extends State<SplashScreen>
         child: Stack(
           children: [
             Positioned(
-              top: mq.height * .15,
+              top: mq.height * .25,
               right: mq.width * .25,
               width: mq.width * .5,
               child: Image.asset('assets/images/t.flash_logo.png'),
             ),
             Positioned(
-              // bottom: mq.height * 0.01,
-              top: mq.height * .5,
+              bottom: mq.height * 0.07,
+              // top: mq.height * .5,
               width: mq.width,
               child: const Text(
                 'Made in India With ❤️',

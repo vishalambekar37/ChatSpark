@@ -20,12 +20,12 @@ class ProfileDialog extends StatelessWidget {
         height: mq.height * .35,
         child: Stack(children: [
           Positioned(
-            left: mq.width * .1,
-            top: mq.height * .075,
+            left: mq.width * .06,
+            top: mq.height * .065,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(mq.height * .25),
               child: CachedNetworkImage(
-                width: mq.height * .5,
+                width: mq.height * .27,
                 fit: BoxFit.cover,
                 imageUrl: user.image,
                 // placeholder: (context, url) => CircularProgressIndicator(),

@@ -48,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen>
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (_) => const MyHomePage()));
           });
+          //mean if jar asel tr direct login other wise new create karun login hoil.
         }
       }
     });

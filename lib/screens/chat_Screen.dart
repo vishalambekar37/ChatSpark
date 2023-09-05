@@ -140,8 +140,10 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget _appBar() {
     return InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => ViewProfileScreen(user: widget.user)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => ViewProfileScreen(user: widget.user)));
         },
         child: StreamBuilder(
             stream: APIs.getUserInfo(widget.user),
@@ -151,67 +153,75 @@ class _ChatScreenState extends State<ChatScreen> {
                   data?.map((e) => ChatUser.fromJson(e.data())).toList() ?? [];
 
               return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  //back button
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.black54,
-                      )),
-                  //user profile picture
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(mq.height * .3),
-                    child: CachedNetworkImage(
-                      height: mq.height * .05,
-                      width: mq.height * .05,
-                      imageUrl:
-                          list.isNotEmpty ? list[0].image : widget.user.image,
-                      // placeholder: (context, url) => CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => const CircleAvatar(
-                        child: Icon(CupertinoIcons.person),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
-                      Text(
-                        list.isNotEmpty
-                            ? list[0].name
-                            :
-                            //user name
-                            widget.user.name,
-                        style: const TextStyle(
-                            fontSize: 16, color: Colors.black87),
+                      //back button
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.black54,
+                          )),
+                      //user profile picture
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(mq.height * .3),
+                        child: CachedNetworkImage(
+                          height: mq.height * .05,
+                          width: mq.height * .05,
+                          imageUrl: list.isNotEmpty
+                              ? list[0].image
+                              : widget.user.image,
+                          // placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              const CircleAvatar(
+                            child: Icon(CupertinoIcons.person),
+                          ),
+                        ),
                       ),
                       SizedBox(
-                        height: 2,
+                        width: 10,
                       ),
-                      //last seen time of user
-                      Text(
-                        list.isNotEmpty
-                            ? list[0].isOnline
-                                ? 'Online'
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            list.isNotEmpty
+                                ? list[0].name
+                                :
+                                //user name
+                                widget.user.name,
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.black87),
+                          ),
+                          SizedBox(
+                            height: 2,
+                          ),
+                          //last seen time of user
+                          Text(
+                            list.isNotEmpty
+                                ? list[0].isOnline
+                                    ? 'Online'
+                                    : MyDateUtil.getLastActiveTime(
+                                        context: context,
+                                        lastActive: list[0].lastActive)
                                 : MyDateUtil.getLastActiveTime(
                                     context: context,
-                                    lastActive: list[0].lastActive)
-                            : MyDateUtil.getLastActiveTime(
-                                context: context,
-                                lastActive: widget.user.lastActive),
-                        style: const TextStyle(
-                            fontSize: 13,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500),
-                      )
+                                    lastActive: widget.user.lastActive),
+                            style: const TextStyle(
+                                fontSize: 13,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
                     ],
-                  )
+                  ),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
                 ],
               );
             }));

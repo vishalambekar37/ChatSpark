@@ -1,6 +1,5 @@
 // import 'package:flash_we_chat/widgets/chat_user_card.dart';
 import 'package:flash_we_chat/auth/profile_screen%20copy.dart';
-import 'package:flash_we_chat/auth/view_profile_screen.dart';
 import 'package:flash_we_chat/models/chat_user.dart';
 import 'package:flash_we_chat/widgets/chat_user_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -64,9 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
             setState(() {
               _isSearching = !_isSearching;
             });
-            return Future.value(false);
+            return Future.value(false); //app not in search mode
           } else {
-            return Future.value(true);
+            return Future.value(true);//app in search mode
           }
         },
         child: Scaffold(
@@ -75,24 +74,24 @@ class _MyHomePageState extends State<MyHomePage> {
               // centerTitle: true,
               elevation: 1,
               backgroundColor: Colors.white,
-
+              //when click on search button.below come
               title: _isSearching
                   ? TextField(
                       decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Name,Email, .....'),
-                      autofocus: true,
+                      autofocus: true, //itshow the keyboard when the screen loads, without requiring the user to tap on the field.
                       style: TextStyle(fontSize: 17, letterSpacing: 0.5),
 
                       //when search text changes then updated search list
                       onChanged: (val) {
-                        //search logic
+                        //search logic of name
                         _searchList.clear();
                         for (var i in _list) {
                           if (i.name
                                   .toLowerCase()
                                   .contains(val.toLowerCase()) ||
-                              i.email
+                              i.email //toLowerCase() method is used to ensure a case-insensitive comparison.
                                   .toLowerCase()
                                   .contains(val.toLowerCase())) {
                             _searchList.add(i);
@@ -119,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ? CupertinoIcons.clear_circled_solid
                         : Icons.search)),
 
-                //more feature button
+                // more feature button
                 IconButton(
                     onPressed: () {
                       Navigator.push(
