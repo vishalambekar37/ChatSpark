@@ -1,4 +1,4 @@
-# flash_we_chat
+# Chat Spark
 
 A new Flutter project.
 
