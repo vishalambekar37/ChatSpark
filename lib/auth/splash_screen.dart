@@ -16,13 +16,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-      //SingleTickerProviderStateMixin  to set up and manage the _animationController for the background color transition animation in the splash screen.
+  late AnimationController _animationController;
+  //SingleTickerProviderStateMixin  to set up and manage the _animationController for the background color transition animation in the splash screen.
   // bool _isAnimate = false;
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 4000), () {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge); //mean this screen use whole screen
+      SystemChrome.setEnabledSystemUIMode(
+          SystemUiMode.edgeToEdge); //mean this screen use whole screen
       SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
           systemNavigationBarColor: Colors.white,
           statusBarColor: Colors.white));
@@ -44,7 +46,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   ColorTween _colorTween =
       ColorTween(begin: Color(0xff031856), end: Colors.blue);
-  AnimationController? _animationController;
 
   @override
   void iniState() {

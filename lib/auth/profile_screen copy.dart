@@ -90,22 +90,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ?
                         //local image
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(mq.height * .1),
+                            borderRadius: BorderRadius.circular(mq.height * .2),
                             child: Image.file(
                               File(_image!),
                               height: mq.height * .2,
                               width: mq.height * .2,
-                              fit: BoxFit.contain,
+                              fit: BoxFit.fitWidth,
                             ),
                           )
                         :
                         //image from server
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(mq.height * .1),
+                            borderRadius: BorderRadius.circular(mq.height * .2),
                             child: CachedNetworkImage(
                               height: mq.height * .2,
                               width: mq.height * .2,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fitWidth,
                               imageUrl: widget.user.image,
                               // placeholder: (context, url) => CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
@@ -247,48 +247,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   //pick from gallery button
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          backgroundColor: Colors.white,
-                          fixedSize: Size(mq.width * .3, mq.height * .15)),
-                      onPressed: () async {
-                        final ImagePicker picker = ImagePicker();
-                        // Pick an image.
-                        final XFile? image = await picker.pickImage(
-                            source: ImageSource.gallery, imageQuality: 80);
-                        if (image != null) {
-                          log('Image Path: ${image.path} -- MimeType: ${image.mimeType}');
-                          setState(() {
-                            _image = image.path;
-                          });
-                          APIs.updateProfilePicture(File(_image!));
-                          //for hiding bottom sheet
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Image.asset('assets/images/add_image.png')),
+                    style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        backgroundColor: Colors.white,
+                        fixedSize: Size(mq.width * .3, mq.height * .15)),
+                    onPressed: () async {
+                      final ImagePicker picker = ImagePicker();
+                      // Pick an image.
+                      final XFile? image = await picker.pickImage(
+                          source: ImageSource.gallery, imageQuality: 80);
+                      if (image != null) {
+                        log('Image Path: ${image.path} -- MimeType: ${image.mimeType}');
+                        setState(() {
+                          _image = image.path;
+                        });
+                        APIs.updateProfilePicture(File(_image!));
+                        //for hiding bottom sheet
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Image.asset('assets/images/add_image.png'),
+                  ),
                   //pick form camera
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          backgroundColor: Colors.white,
-                          fixedSize: Size(mq.width * .3, mq.height * .15)),
-                      onPressed: () async {
-                        final ImagePicker picker = ImagePicker();
-                        // Pick an image.
-                        final XFile? image = await picker.pickImage(
-                            source: ImageSource.camera, imageQuality: 80);
-                        if (image != null) {
-                          log('Image Path: ${image.path}');
-                          setState(() {
-                            _image = image.path;
-                          });
-                          APIs.updateProfilePicture(File(_image!));
-                          //for hiding bottom sheet
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Image.asset('assets/images/camera_image.jpeg')),
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor: Colors.white,
+                      fixedSize: Size(mq.width * .3, mq.height * .15),
+                    ),
+                    onPressed: () async {
+                      final ImagePicker picker = ImagePicker();
+                      // Pick an image.
+                      final XFile? image = await picker.pickImage(
+                          source: ImageSource.camera, imageQuality: 80);
+                      if (image != null) {
+                        log('Image Path: ${image.path}');
+                        setState(() {
+                          _image = image.path;
+                        });
+                        APIs.updateProfilePicture(File(_image!));
+                        //for hiding bottom sheet
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Image.asset('assets/images/camera_image.jpeg'),
+                  ),
                 ],
               )
             ],

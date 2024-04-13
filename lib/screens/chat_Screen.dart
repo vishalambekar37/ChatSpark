@@ -16,9 +16,9 @@ import '../main.dart';
 
 class ChatScreen extends StatefulWidget {
   final ChatUser user;
-
+  
   const ChatScreen({super.key, required this.user});
-
+  
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
@@ -347,7 +347,7 @@ class _ChatScreenState extends State<ChatScreen> {
               color: Colors.white,
               size: 28,
             ),
-          )
+          ),
         ],
       ),
     );
