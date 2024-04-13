@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'firebase_options.dart';
 
 //global object for accessing device screen size.
-late Size mq;
+late Size mq;   
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);

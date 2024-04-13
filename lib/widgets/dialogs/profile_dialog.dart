@@ -14,7 +14,7 @@ class ProfileDialog extends StatelessWidget {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
       backgroundColor: Colors.white.withOpacity(.9),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       content: SizedBox(
         width: mq.width * .6,
         height: mq.height * .35,
@@ -26,6 +26,7 @@ class ProfileDialog extends StatelessWidget {
               borderRadius: BorderRadius.circular(mq.height * .25),
               child: CachedNetworkImage(
                 width: mq.height * .27,
+                height: mq.height * 0.27,
                 fit: BoxFit.cover,
                 imageUrl: user.image,
                 // placeholder: (context, url) => CircularProgressIndicator(),

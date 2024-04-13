@@ -40,7 +40,7 @@ class MyDateUtil {
     String formattedTime = TimeOfDay.fromDateTime(time).format(context);
     if (time.day == now.day &&
         time.month == now.month &&
-        time.year == now.year) {
+        time.year == time.year) {
       return 'Last seen today at $formattedTime';
     }
 
