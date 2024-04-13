@@ -19,9 +19,17 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _animationController;
   //SingleTickerProviderStateMixin  to set up and manage the _animationController for the background color transition animation in the splash screen.
   // bool _isAnimate = false;
+
   @override
   void initState() {
     super.initState();
+    _animationController =
+        AnimationController(duration: Duration(seconds: 5), vsync: this)
+          ..repeat();
+    _animationController?.addListener(() {
+      print(_animationController?.value);
+    });
+
     Future.delayed(const Duration(milliseconds: 4000), () {
       SystemChrome.setEnabledSystemUIMode(
           SystemUiMode.edgeToEdge); //mean this screen use whole screen
@@ -48,21 +56,10 @@ class _SplashScreenState extends State<SplashScreen>
       ColorTween(begin: Color(0xff031856), end: Colors.blue);
 
   @override
-  void iniState() {
-    super.initState();
-    _animationController =
-        AnimationController(duration: Duration(seconds: 5), vsync: this)
-          ..repeat();
-    _animationController?.addListener(() {
-      print(_animationController?.value);
-    });
-  }
-
-  @override
   //dispose() Method: This method is called when the state is disposed
   void dispose() {
-    super.dispose();
     _animationController?.dispose();
+    super.dispose();
   }
 
   @override
